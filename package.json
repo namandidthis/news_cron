@@ -1,0 +1,21 @@
+{
+  "name": "news_cron",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/express": "^5.0.6",
+    "drizzle-kit": "^0.31.10"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "express": "^5.2.1",
+    "fast-xml-parser": "^5.9.3",
+    "node-cron": "^4.5.0",
+    "postgres": "^3.4.9"
+  }
+}
