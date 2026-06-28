@@ -1,5 +1,8 @@
 import cron from "node-cron";
 import { XMLParser } from "fast-xml-parser";
+import { newsTable } from "./schema.ts";
+import {db }from "./db.ts"
+
 
 const FEEDS = {
   companies: "https://www.livemint.com/rss/companies",
@@ -71,9 +74,36 @@ async function fetchAllFeeds() {
   return allFeeds.flat();
 }
 
-(async () => {
-  const articles = await fetchAllFeeds();
 
-  console.log(`Fetched ${articles.length} articles\n`);
-  console.log(articles.slice(0, 5));
-})();
+async function syncNews(){
+  let inserted =0;
+  let skipped =0;
+
+  const articles = await fetchAllFeeds();
+  for (const article of articles){
+    const result = await db.insert(newsTable).values({
+      guid: String(article.guid),
+      source: "livemint",
+      category: article.category,
+      title: article.title,
+      description: article.description ?? null,
+      link: article.link,
+      publishedAt: article.pubDate ? new Date(article.pubDate) : null,
+    }).onConflictDoNothing().returning({ guid: newsTable.guid });
+    
+    if(result.length===0){
+      skipped++;
+    }
+    else{
+      inserted++;
+    }
+  }
+  console.log(`Done — inserted: ${inserted}, skipped (duplicates): ${skipped}`)
+}
+
+
+syncNews();
+
+cron.schedule("0 * * * *", () => {
+  syncNews();
+});
