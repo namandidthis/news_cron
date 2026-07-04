@@ -12,11 +12,14 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "cloudinary": "^2.10.0",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
     "fast-xml-parser": "^5.9.3",
     "node-cron": "^4.5.0",
-    "postgres": "^3.4.9"
+    "postgres": "^3.4.9",
+    "resend": "^6.17.1",
+    "sarvamai": "^1.1.7"
   }
 }
