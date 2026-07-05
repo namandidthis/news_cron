@@ -62,5 +62,3 @@ export async function generateDigest(userPref: string[], userEmail: string) {
   });
   console.log("Email sent to", userEmail);
 }
-// testing
-// await generateDigest(["ai", "technology"], "naman6176@gmail.com");
