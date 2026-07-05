@@ -46,8 +46,8 @@ export async function generateDigest(userPref: string[], userEmail: string) {
     speaker: "abhilash",
   });
   const audio = Buffer.from(response.audios.join(""), "base64");
-  fs.writeFileSync("output.wav", audio);
-  console.log("Audio saved");
+  // fs.writeFileSync("output.wav", audio);
+  // console.log("Audio saved");
 
   console.log("Uploading to Cloudinary...");
   const audioUrl = await uploadAudio("output.wav");
@@ -62,5 +62,3 @@ export async function generateDigest(userPref: string[], userEmail: string) {
   });
   console.log("Email sent to", userEmail);
 }
-// testing
-// await generateDigest(["ai", "technology"], "naman6176@gmail.com");
