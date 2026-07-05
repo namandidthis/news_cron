@@ -1,4 +1,6 @@
 import express from "express";
+import "./cron.ts";        // hourly RSS fetch → insert to DB
+import "./scheduler.ts";   // midnight load + minute check → trigger digest
 
 const app = express();
 const PORT = process.env.PORT || 3000;

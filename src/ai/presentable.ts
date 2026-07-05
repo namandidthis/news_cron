@@ -36,7 +36,7 @@ export async function aiSummary(articles: { title: string; description: string; 
     messages: [
       {
         role: 'user',
-        content: `You are a news anchor preparing a daily audio digest. Summarize the following news articles into a natural, conversational script of max 200 words. Do not assume anything beyond what is written. Stay factual.\n\n${articleText}`
+        content: `You are a news anchor preparing a daily audio digest. Summarize the following news articles into a natural, conversational script of max 200 words for 1 news , for each news atleast yap good. Do not assume anything beyond what is written. Stay factual.\n\n${articleText}`
       },
     ],
   }),
